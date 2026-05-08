@@ -1,0 +1,635 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Auto-Ã©valuation des compÃ©tences â Ãlectronique embarquÃ©e</title>
+<style>
+  :root {
+    --primary: #1a56db;
+    --primary-light: #e8f0fe;
+    --success: #0e9f6e;
+    --text: #111827;
+    --muted: #6b7280;
+    --border: #e5e7eb;
+    --bg: #f9fafb;
+    --card: #ffffff;
+    --radius: 10px;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: 'Segoe UI', system-ui, sans-serif; background: var(--bg); color: var(--text); line-height: 1.6; }
+
+  /* HEADER */
+  .header { background: var(--primary); color: white; padding: 40px 24px 32px; text-align: center; }
+  .header h1 { font-size: 1.6rem; font-weight: 700; margin-bottom: 8px; }
+  .header p { opacity: 0.85; font-size: 0.95rem; max-width: 600px; margin: 0 auto; }
+
+  /* NOTATION LEGEND */
+  .legend { background: var(--primary-light); border-left: 4px solid var(--primary); margin: 24px auto; max-width: 760px; padding: 16px 20px; border-radius: var(--radius); }
+  .legend h3 { font-size: 0.85rem; font-weight: 700; text-transform: uppercase; letter-spacing: .05em; color: var(--primary); margin-bottom: 10px; }
+  .legend-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 8px; }
+  .legend-item { display: flex; align-items: flex-start; gap: 8px; font-size: 0.85rem; }
+  .badge { display: inline-block; min-width: 32px; text-align: center; font-weight: 700; font-size: 0.78rem; padding: 2px 6px; border-radius: 4px; color: white; flex-shrink: 0; margin-top: 1px; }
+  .badge-N   { background: #6b7280; }
+  .badge-Np  { background: #3b82f6; }
+  .badge-M   { background: #10b981; }
+  .badge-Mp  { background: #f59e0b; }
+  .badge-E   { background: #ef4444; }
+
+  /* FORM */
+  form { max-width: 760px; margin: 0 auto; padding: 0 16px 60px; }
+
+  /* IDENTITY SECTION */
+  .identity-card { background: var(--card); border-radius: var(--radius); border: 1px solid var(--border); padding: 24px; margin-bottom: 28px; box-shadow: 0 1px 4px rgba(0,0,0,.05); }
+  .identity-card h2 { font-size: 1rem; font-weight: 700; margin-bottom: 16px; color: var(--primary); }
+  .field-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 14px; }
+  .field-row.full { grid-template-columns: 1fr; }
+  label { display: block; font-size: 0.82rem; font-weight: 600; color: var(--muted); margin-bottom: 5px; text-transform: uppercase; letter-spacing: .04em; }
+  input[type="text"], input[type="email"], input[type="tel"], select, textarea {
+    width: 100%; padding: 9px 12px; border: 1px solid var(--border); border-radius: 6px;
+    font-size: 0.9rem; color: var(--text); background: white; outline: none; transition: border-color .2s;
+  }
+  input:focus, select:focus, textarea:focus { border-color: var(--primary); box-shadow: 0 0 0 3px rgba(26,86,219,.12); }
+
+  /* SECTION */
+  .section { background: var(--card); border-radius: var(--radius); border: 1px solid var(--border); margin-bottom: 20px; overflow: hidden; box-shadow: 0 1px 4px rgba(0,0,0,.05); }
+  .section-header { background: var(--primary); color: white; padding: 12px 20px; display: flex; align-items: center; gap: 10px; }
+  .section-header h2 { font-size: 0.95rem; font-weight: 700; }
+  .section-header span { font-size: 0.8rem; opacity: .75; margin-left: auto; }
+  .section-body { padding: 4px 0; }
+
+  /* COMPETENCY ROW */
+  .competency { padding: 14px 20px; border-bottom: 1px solid var(--border); transition: background .15s; }
+  .competency:last-child { border-bottom: none; }
+  .competency:hover { background: #f8faff; }
+  .comp-name { font-size: 0.9rem; font-weight: 600; margin-bottom: 4px; }
+  .comp-question { font-size: 0.8rem; color: var(--muted); margin-bottom: 10px; line-height: 1.5; }
+  .rating-row { display: flex; gap: 8px; flex-wrap: wrap; }
+  .rating-option { display: none; }
+  .rating-option + label {
+    display: inline-flex; align-items: center; justify-content: center;
+    min-width: 48px; padding: 5px 10px; border: 2px solid var(--border);
+    border-radius: 6px; font-size: 0.82rem; font-weight: 700; cursor: pointer;
+    transition: all .15s; color: var(--muted); background: white; text-transform: uppercase;
+  }
+  .rating-option:checked + label { color: white; border-color: transparent; }
+  [value="N"]:checked + label    { background: #6b7280; }
+  [value="N+"]:checked + label   { background: #3b82f6; }
+  [value="M"]:checked + label    { background: #10b981; }
+  [value="M+"]:checked + label   { background: #f59e0b; }
+  [value="E"]:checked + label    { background: #ef4444; }
+  .rating-option + label:hover   { border-color: var(--primary); color: var(--primary); background: var(--primary-light); }
+  .rating-option:checked + label:hover { color: white; border-color: transparent; }
+
+  /* COMMENT */
+  .comp-comment { margin-top: 8px; }
+  .comp-comment textarea { min-height: 52px; resize: vertical; font-size: 0.82rem; }
+
+  /* SUBMIT */
+  .submit-area { text-align: center; margin-top: 32px; }
+  .btn-submit {
+    background: var(--primary); color: white; border: none; padding: 14px 48px;
+    font-size: 1rem; font-weight: 700; border-radius: 8px; cursor: pointer;
+    transition: background .2s; letter-spacing: .02em;
+  }
+  .btn-submit:hover { background: #1648c0; }
+  .submit-note { font-size: 0.78rem; color: var(--muted); margin-top: 10px; }
+
+  /* CONFIRMATION */
+  #confirmation { display: none; text-align: center; padding: 60px 24px; max-width: 500px; margin: 40px auto; background: var(--card); border-radius: var(--radius); border: 1px solid var(--border); }
+  #confirmation .icon { font-size: 3rem; margin-bottom: 16px; }
+  #confirmation h2 { font-size: 1.3rem; margin-bottom: 10px; color: var(--success); }
+  #confirmation p { color: var(--muted); font-size: 0.9rem; }
+
+  @media (max-width: 560px) {
+    .field-row { grid-template-columns: 1fr; }
+    .rating-row { gap: 6px; }
+    .rating-option + label { min-width: 40px; font-size: 0.75rem; }
+  }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <h1>Auto-Ã©valuation des compÃ©tences</h1>
+  <p>ComplÃ©tez ce formulaire pour nous permettre d'identifier les missions qui correspondent le mieux Ã  votre profil. Tous les champs de notation sont facultatifs â Ã©valuez uniquement les compÃ©tences que vous avez pratiquÃ©es.</p>
+</div>
+
+<form id="mainForm">
+
+  <!-- LÃGENDE -->
+  <div class="legend">
+    <h3>SystÃ¨me de notation</h3>
+    <div class="legend-grid">
+      <div class="legend-item"><span class="badge badge-N">N</span><span>Notions thÃ©oriques ou scolaires</span></div>
+      <div class="legend-item"><span class="badge badge-Np">N+</span><span>PremiÃ¨re mise en pratique ou stage significatif</span></div>
+      <div class="legend-item"><span class="badge badge-M">M</span><span>MaÃ®trise â pratique &gt; 6 mois</span></div>
+      <div class="legend-item"><span class="badge badge-Mp">M+</span><span>MaÃ®trise confirmÃ©e â pratique &gt; 2 ans</span></div>
+      <div class="legend-item"><span class="badge badge-E">E</span><span>Expertise â conseil et formation possibles</span></div>
+    </div>
+  </div>
+
+  <!-- IDENTITÃ -->
+  <div class="identity-card">
+    <h2>Vos informations</h2>
+    <div class="field-row">
+      <div><label for="prenom">PrÃ©nom *</label><input type="text" id="prenom" name="prenom" required placeholder="Jean"></div>
+      <div><label for="nom">Nom *</label><input type="text" id="nom" name="nom" required placeholder="Dupont"></div>
+    </div>
+    <div class="field-row">
+      <div><label for="email">Email *</label><input type="email" id="email" name="email" required placeholder="jean.dupont@email.com"></div>
+      <div><label for="telephone">TÃ©lÃ©phone</label><input type="tel" id="telephone" name="telephone" placeholder="+33 6 00 00 00 00"></div>
+    </div>
+    <div class="field-row">
+      <div><label for="ville">Ville</label><input type="text" id="ville" name="ville" placeholder="Paris, Lyon, Toulouse..."></div>
+      <div><label for="disponibilite">DisponibilitÃ©</label>
+        <select id="disponibilite" name="disponibilite">
+          <option value="">â SÃ©lectionner â</option>
+          <option>ImmÃ©diate</option>
+          <option>1 mois</option>
+          <option>3 mois</option>
+          <option>Ã dÃ©finir</option>
+        </select>
+      </div>
+    </div>
+  </div>
+
+  <!-- SECTION 1 : PROFIL GÃNÃRAL -->
+  <div class="section">
+    <div class="section-header">
+      <h2>Profil gÃ©nÃ©ral</h2>
+      <span>5 compÃ©tences</span>
+    </div>
+    <div class="section-body">
+
+      <div class="competency">
+        <div class="comp-name">SpÃ©cification / RÃ©daction de documents</div>
+        <div class="comp-question">Avez-vous rÃ©digÃ© des cahiers des charges, spÃ©cifications techniques ou documents de conception ?</div>
+        <div class="rating-row">
+          <input class="rating-option" type="radio" name="spec_redac" id="spec_redac_N" value="N"><label for="spec_redac_N">N</label>
+          <input class="rating-option" type="radio" name="spec_redac" id="spec_redac_Np" value="N+"><label for="spec_redac_Np">N+</label>
+          <input class="rating-option" type="radio" name="spec_redac" id="spec_redac_M" value="M"><label for="spec_redac_M">M</label>
+          <input class="rating-option" type="radio" name="spec_redac" id="spec_redac_Mp" value="M+"><label for="spec_redac_Mp">M+</label>
+          <input class="rating-option" type="radio" name="spec_redac" id="spec_redac_E" value="E"><label for="spec_redac_E">E</label>
+        </div>
+        <div class="comp-comment"><textarea name="spec_redac_comment" placeholder="PrÃ©cisez : type de documents, autonomie, contexte projet..."></textarea></div>
+      </div>
+
+      <div class="competency">
+        <div class="comp-name">Analyse / Conception / DÃ©veloppement</div>
+        <div class="comp-question">Avez-vous menÃ© des phases d'analyse, de conception ou de dÃ©veloppement technique ?</div>
+        <div class="rating-row">
+          <input class="rating-option" type="radio" name="conception" id="conception_N" value="N"><label for="conception_N">N</label>
+          <input class="rating-option" type="radio" name="conception" id="conception_Np" value="N+"><label for="conception_Np">N+</label>
+          <input class="rating-option" type="radio" name="conception" id="conception_M" value="M"><label for="conception_M">M</label>
+          <input class="rating-option" type="radio" name="conception" id="conception_Mp" value="M+"><label for="conception_Mp">M+</label>
+          <input class="rating-option" type="radio" name="conception" id="conception_E" value="E"><label for="conception_E">E</label>
+        </div>
+        <div class="comp-comment"><textarea name="conception_comment" placeholder="DÃ©crivez un projet reprÃ©sentatif et votre rÃ´le..."></textarea></div>
+      </div>
+
+      <div class="competency">
+        <div class="comp-name">IntÃ©gration, validation, tests</div>
+        <div class="comp-question">Avez-vous participÃ© Ã  des phases d'intÃ©gration systÃ¨me ou de validation / tests ?</div>
+        <div class="rating-row">
+          <input class="rating-option" type="radio" name="integration" id="integration_N" value="N"><label for="integration_N">N</label>
+          <input class="rating-option" type="radio" name="integration" id="integration_Np" value="N+"><label for="integration_Np">N+</label>
+          <input class="rating-option" type="radio" name="integration" id="integration_M" value="M"><label for="integration_M">M</label>
+          <input class="rating-option" type="radio" name="integration" id="integration_Mp" value="M+"><label for="integration_Mp">M+</label>
+          <input class="rating-option" type="radio" name="integration" id="integration_E" value="E"><label for="integration_E">E</label>
+        </div>
+        <div class="comp-comment"><textarea name="integration_comment" placeholder="Outils et mÃ©thodes utilisÃ©s (banc de test, protocoles...)..."></textarea></div>
+      </div>
+
+      <div class="competency">
+        <div class="comp-name">Management (projet ou gÃ©nÃ©ral)</div>
+        <div class="comp-question">Avez-vous managÃ© une Ã©quipe ou pilotÃ© un projet ?</div>
+        <div class="rating-row">
+          <input class="rating-option" type="radio" name="management" id="management_N" value="N"><label for="management_N">N</label>
+          <input class="rating-option" type="radio" name="management" id="management_Np" value="N+"><label for="management_Np">N+</label>
+          <input class="rating-option" type="radio" name="management" id="management_M" value="M"><label for="management_M">M</label>
+          <input class="rating-option" type="radio" name="management" id="management_Mp" value="M+"><label for="management_Mp">M+</label>
+          <input class="rating-option" type="radio" name="management" id="management_E" value="E"><label for="management_E">E</label>
+        </div>
+        <div class="comp-comment"><textarea name="management_comment" placeholder="Combien de personnes, quelle durÃ©e, quel budget gÃ©rÃ© ?..."></textarea></div>
+      </div>
+
+      <div class="competency">
+        <div class="comp-name">Industrialisation / Fabrication</div>
+        <div class="comp-question">Avez-vous travaillÃ© en phase d'industrialisation ou en lien avec la fabrication Ã©lectronique (DFM, DFT, passage sÃ©rie, EMS...) ?</div>
+        <div class="rating-row">
+          <input class="rating-option" type="radio" name="industrialisation" id="industrialisation_N" value="N"><label for="industrialisation_N">N</label>
+          <input class="rating-option" type="radio" name="industrialisation" id="industrialisation_Np" value="N+"><label for="industrialisation_Np">N+</label>
+          <input class="rating-option" type="radio" name="industrialisation" id="industrialisation_M" value="M"><label for="industrialisation_M">M</label>
+          <input class="rating-option" type="radio" name="industrialisation" id="industrialisation_Mp" value="M+"><label for="industrialisation_Mp">M+</label>
+          <input class="rating-option" type="radio" name="industrialisation" id="industrialisation_E" value="E"><label for="industrialisation_E">E</label>
+        </div>
+        <div class="comp-comment"><textarea name="industrialisation_comment" placeholder="Quels processus maÃ®trisez-vous ?..."></textarea></div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- SECTION 2 : ÃLECTRONIQUE -->
+  <div class="section">
+    <div class="section-header">
+      <h2>Ãlectronique</h2>
+      <span>5 compÃ©tences</span>
+    </div>
+    <div class="section-body">
+
+      <div class="competency">
+        <div class="comp-name">Analogique (BF, petits signaux)</div>
+        <div class="comp-question">MaÃ®trisez-vous l'Ã©lectronique analogique basse frÃ©quence (amplis op, filtres, rÃ©gulateurs, capteurs...) ?</div>
+        <div class="rating-row">
+          <input class="rating-option" type="radio" name="analogique" id="analogique_N" value="N"><label for="analogique_N">N</label>
+          <input class="rating-option" type="radio" name="analogique" id="analogique_Np" value="N+"><label for="analogique_Np">N+</label>
+          <input class="rating-option" type="radio" name="analogique" id="analogique_M" value="M"><label for="analogique_M">M</label>
+          <input class="rating-option" type="radio" name="analogique" id="analogique_Mp" value="M+"><label for="analogique_Mp">M+</label>
+          <input class="rating-option" type="radio" name="analogique" id="analogique_E" value="E"><label for="analogique_E">E</label>
+        </div>
+        <div class="comp-comment"><textarea name="analogique_comment" placeholder="Exemple de rÃ©alisation concrÃ¨te..."></textarea></div>
+      </div>
+
+      <div class="competency">
+        <div class="comp-name">NumÃ©rique (processeurs, pÃ©riphÃ©riques)</div>
+        <div class="comp-question">Avez-vous conÃ§u ou intÃ©grÃ© des cartes numÃ©riques (microprocesseurs, mÃ©moires, interfaces...) ?</div>
+        <div class="rating-row">
+          <input class="rating-option" type="radio" name="numerique" id="numerique_N" value="N"><label for="numerique_N">N</label>
+          <input class="rating-option" type="radio" name="numerique" id="numerique_Np" value="N+"><label for="numerique_Np">N+</label>
+          <input class="rating-option" type="radio" name="numerique" id="numerique_M" value="M"><label for="numerique_M">M</label>
+          <input class="rating-option" type="radio" name="numerique" id="numerique_Mp" value="M+"><label for="numerique_Mp">M+</label>
+          <input class="rating-option" type="radio" name="numerique" id="numerique_E" value="E"><label for="numerique_E">E</label>
+        </div>
+        <div class="comp-comment"><textarea name="numerique_comment" placeholder="Architectures et contextes..."></textarea></div>
+      </div>
+
+      <div class="competency">
+        <div class="comp-name">Logique programmable (FPGA, VHDL)</div>
+        <div class="comp-question">Avez-vous utilisÃ© de la logique programmable FPGA/CPLD ? Quels langages (VHDL, Verilog) ?</div>
+        <div class="rating-row">
+          <input class="rating-option" type="radio" name="fpga_elec" id="fpga_elec_N" value="N"><label for="fpga_elec_N">N</label>
+          <input class="rating-option" type="radio" name="fpga_elec" id="fpga_elec_Np" value="N+"><label for="fpga_elec_Np">N+</label>
+          <input class="rating-option" type="radio" name="fpga_elec" id="fpga_elec_M" value="M"><label for="fpga_elec_M">M</label>
+          <input class="rating-option" type="radio" name="fpga_elec" id="fpga_elec_Mp" value="M+"><label for="fpga_elec_Mp">M+</label>
+          <input class="rating-option" type="radio" name="fpga_elec" id="fpga_elec_E" value="E"><label for="fpga_elec_E">E</label>
+        </div>
+        <div class="comp-comment"><textarea name="fpga_elec_comment" placeholder="Outils de synthÃ¨se (Vivado, Quartus...), projets..."></textarea></div>
+      </div>
+
+      <div class="competency">
+        <div class="comp-name">CEM (CompatibilitÃ© ÃlectromagnÃ©tique)</div>
+        <div class="comp-question">Avez-vous gÃ©rÃ© des problÃ©matiques de CEM (conception, tests chambre anÃ©choÃ¯que, normes EN/MIL-STD...) ?</div>
+        <div class="rating-row">
+          <input class="rating-option" type="radio" name="cem" id="cem_N" value="N"><label for="cem_N">N</label>
+          <input class="rating-option" type="radio" name="cem" id="cem_Np" value="N+"><label for="cem_Np">N+</label>
+          <input class="rating-option" type="radio" name="cem" id="cem_M" value="M"><label for="cem_M">M</label>
+          <input class="rating-option" type="radio" name="cem" id="cem_Mp" value="M+"><label for="cem_Mp">M+</label>
+          <input class="rating-option" type="radio" name="cem" id="cem_E" value="E"><label for="cem_E">E</label>
+        </div>
+        <div class="comp-comment"><textarea name="cem_comment" placeholder="DÃ©crivez votre expÃ©rience CEM..."></textarea></div>
+      </div>
+
+      <div class="competency">
+        <div class="comp-name">SOPC et Linux embarquÃ©</div>
+        <div class="comp-question">Avez-vous de l'expÃ©rience avec des systÃ¨mes SOPC (Zynq, Cyclone V SoC) ou Linux embarquÃ© ?</div>
+        <div class="rating-row">
+          <input class="rating-option" type="radio" name="sopc" id="sopc_N" value="N"><label for="sopc_N">N</label>
+          <input class="rating-option" type="radio" name="sopc" id="sopc_Np" value="N+"><label for="sopc_Np">N+</label>
+          <input class="rating-option" type="radio" name="sopc" id="sopc_M" value="M"><label for="sopc_M">M</label>
+          <input class="rating-option" type="radio" name="sopc" id="sopc_Mp" value="M+"><label for="sopc_Mp">M+</label>
+          <input class="rating-option" type="radio" name="sopc" id="sopc_E" value="E"><label for="sopc_E">E</label>
+        </div>
+        <div class="comp-comment"><textarea name="sopc_comment" placeholder="Cibles matÃ©rielles et applications..."></textarea></div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- SECTION 3 : OUTILS & COMPOSANTS -->
+  <div class="section">
+    <div class="section-header">
+      <h2>Outils & Composants</h2>
+      <span>8 compÃ©tences</span>
+    </div>
+    <div class="section-body">
+
+      <div class="competency">
+        <div class="comp-name">MicrocontrÃ´leurs</div>
+        <div class="comp-question">Quels microcontrÃ´leurs avez-vous programmÃ©s ? (STM32, PIC, AVR, NXP, Renesas...)</div>
+        <div class="rating-row">
+          <input class="rating-option" type="radio" name="uc" id="uc_N" value="N"><label for="uc_N">N</label>
+          <input class="rating-option" type="radio" name="uc" id="uc_Np" value="N+"><label for="uc_Np">N+</label>
+          <input class="rating-option" type="radio" name="uc" id="uc_M" value="M"><label for="uc_M">M</label>
+          <input class="rating-option" type="radio" name="uc" id="uc_Mp" value="M+"><label for="uc_Mp">M+</label>
+          <input class="rating-option" type="radio" name="uc" id="uc_E" value="E"><label for="uc_E">E</label>
+        </div>
+        <div class="comp-comment"><textarea name="uc_comment" placeholder="Familles utilisÃ©es, pÃ©riphÃ©riques (CAN, SPI, I2C, UART, ADC...), bare metal ou RTOS..."></textarea></div>
+      </div>
+
+      <div class="competency">
+        <div class="comp-name">Microprocesseurs</div>
+        <div class="comp-question">Avez-vous travaillÃ© avec des microprocesseurs (ARM Cortex-A, x86, PowerPC...) au niveau BSP ou pilotes ?</div>
+        <div class="rating-row">
+          <input class="rating-option" type="radio" name="up" id="up_N" value="N"><label for="up_N">N</label>
+          <input class="rating-option" type="radio" name="up" id="up_Np" value="N+"><label for="up_Np">N+</label>
+          <input class="rating-option" type="radio" name="up" id="up_M" value="M"><label for="up_M">M</label>
+          <input class="rating-option" type="radio" name="up" id="up_Mp" value="M+"><label for="up_Mp">M+</label>
+          <input class="rating-option" type="radio" name="up" id="up_E" value="E"><label for="up_E">E</label>
+        </div>
+        <div class="comp-comment"><textarea name="up_comment" placeholder="Architectures et OS ciblÃ©s..."></textarea></div>
+      </div>
+
+      <div class="competency">
+        <div class="comp-name">FPGA</div>
+        <div class="comp-question">Avez-vous dÃ©veloppÃ© sur FPGA ? Quelles familles (Xilinx/AMD, Intel/Altera, Lattice) ?</div>
+        <div class="rating-row">
+          <input class="rating-option" type="radio" name="fpga" id="fpga_N" value="N"><label for="fpga_N">N</label>
+          <input class="rating-option" type="radio" name="fpga" id="fpga_Np" value="N+"><label for="fpga_Np">N+</label>
+          <input class="rating-option" type="radio" name="fpga" id="fpga_M" value="M"><label for="fpga_M">M</label>
+          <input class="rating-option" type="radio" name="fpga" id="fpga_Mp" value="M+"><label for="fpga_Mp">M+</label>
+          <input class="rating-option" type="radio" name="fpga" id="fpga_E" value="E"><label for="fpga_E">E</label>
+        </div>
+        <div class="comp-comment"><textarea name="fpga_comment" placeholder="Projet reprÃ©sentatif, outils (Vivado, Quartus)..."></textarea></div>
+      </div>
+
+      <div class="competency">
+        <div class="comp-name">VHDL</div>
+        <div class="comp-question">MaÃ®trisez-vous le VHDL ? (RTL, IP cores, testbenches, simulation ModelSim/GHDL...)</div>
+        <div class="rating-row">
+          <input class="rating-option" type="radio" name="vhdl" id="vhdl_N" value="N"><label for="vhdl_N">N</label>
+          <input class="rating-option" type="radio" name="vhdl" id="vhdl_Np" value="N+"><label for="vhdl_Np">N+</label>
+          <input class="rating-option" type="radio" name="vhdl" id="vhdl_M" value="M"><label for="vhdl_M">M</label>
+          <input class="rating-option" type="radio" name="vhdl" id="vhdl_Mp" value="M+"><label for="vhdl_Mp">M+</label>
+          <input class="rating-option" type="radio" name="vhdl" id="vhdl_E" value="E"><label for="vhdl_E">E</label>
+        </div>
+        <div class="comp-comment"><textarea name="vhdl_comment" placeholder="Type d'architectures dÃ©veloppÃ©es..."></textarea></div>
+      </div>
+
+      <div class="competency">
+        <div class="comp-name">DSP</div>
+        <div class="comp-question">Avez-vous travaillÃ© avec des DSP (TI C2000/C6000, ADI Blackfin/SHARC...) ?</div>
+        <div class="rating-row">
+          <input class="rating-option" type="radio" name="dsp" id="dsp_N" value="N"><label for="dsp_N">N</label>
+          <input class="rating-option" type="radio" name="dsp" id="dsp_Np" value="N+"><label for="dsp_Np">N+</label>
+          <input class="rating-option" type="radio" name="dsp" id="dsp_M" value="M"><label for="dsp_M">M</label>
+          <input class="rating-option" type="radio" name="dsp" id="dsp_Mp" value="M+"><label for="dsp_Mp">M+</label>
+          <input class="rating-option" type="radio" name="dsp" id="dsp_E" value="E"><label for="dsp_E">E</label>
+        </div>
+        <div class="comp-comment"><textarea name="dsp_comment" placeholder="Applications (audio, radar, contrÃ´le moteur...)..."></textarea></div>
+      </div>
+
+      <div class="competency">
+        <div class="comp-name">RF / HF</div>
+        <div class="comp-question">Avez-vous de l'expÃ©rience en Ã©lectronique RF/HF (circuits RF, VNA, chaÃ®nes d'amplification, antennes...) ?</div>
+        <div class="rating-row">
+          <input class="rating-option" type="radio" name="rf" id="rf_N" value="N"><label for="rf_N">N</label>
+          <input class="rating-option" type="radio" name="rf" id="rf_Np" value="N+"><label for="rf_Np">N+</label>
+          <input class="rating-option" type="radio" name="rf" id="rf_M" value="M"><label for="rf_M">M</label>
+          <input class="rating-option" type="radio" name="rf" id="rf_Mp" value="M+"><label for="rf_Mp">M+</label>
+          <input class="rating-option" type="radio" name="rf" id="rf_E" value="E"><label for="rf_E">E</label>
+        </div>
+        <div class="comp-comment"><textarea name="rf_comment" placeholder="Plage de frÃ©quence, type de projets..."></textarea></div>
+      </div>
+
+      <div class="competency">
+        <div class="comp-name">CAO SchÃ©matique</div>
+        <div class="comp-question">MaÃ®trisez-vous la CAO schÃ©matique Ã©lectronique (Altium, OrCAD, KiCad, Mentor...) ?</div>
+        <div class="rating-row">
+          <input class="rating-option" type="radio" name="cao_schema" id="cao_schema_N" value="N"><label for="cao_schema_N">N</label>
+          <input class="rating-option" type="radio" name="cao_schema" id="cao_schema_Np" value="N+"><label for="cao_schema_Np">N+</label>
+          <input class="rating-option" type="radio" name="cao_schema" id="cao_schema_M" value="M"><label for="cao_schema_M">M</label>
+          <input class="rating-option" type="radio" name="cao_schema" id="cao_schema_Mp" value="M+"><label for="cao_schema_Mp">M+</label>
+          <input class="rating-option" type="radio" name="cao_schema" id="cao_schema_E" value="E"><label for="cao_schema_E">E</label>
+        </div>
+        <div class="comp-comment"><textarea name="cao_schema_comment" placeholder="Outils utilisÃ©s, type de cartes (numÃ©rique, mixte, puissance)..."></textarea></div>
+      </div>
+
+      <div class="competency">
+        <div class="comp-name">CAO Place & Route (PCB)</div>
+        <div class="comp-question">Avez-vous rÃ©alisÃ© du placement-routage PCB ? Nombre de couches max, contraintes HF ou CEM ?</div>
+        <div class="rating-row">
+          <input class="rating-option" type="radio" name="cao_pcb" id="cao_pcb_N" value="N"><label for="cao_pcb_N">N</label>
+          <input class="rating-option" type="radio" name="cao_pcb" id="cao_pcb_Np" value="N+"><label for="cao_pcb_Np">N+</label>
+          <input class="rating-option" type="radio" name="cao_pcb" id="cao_pcb_M" value="M"><label for="cao_pcb_M">M</label>
+          <input class="rating-option" type="radio" name="cao_pcb" id="cao_pcb_Mp" value="M+"><label for="cao_pcb_Mp">M+</label>
+          <input class="rating-option" type="radio" name="cao_pcb" id="cao_pcb_E" value="E"><label for="cao_pcb_E">E</label>
+        </div>
+        <div class="comp-comment"><textarea name="cao_pcb_comment" placeholder="Altium, Cadence Allegro, KiCad... nombre de couches, DDR, HF..."></textarea></div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- SECTION 4 : LANGAGES & MÃTHODES -->
+  <div class="section">
+    <div class="section-header">
+      <h2>Langages & MÃ©thodes</h2>
+      <span>7 compÃ©tences</span>
+    </div>
+    <div class="section-body">
+
+      <div class="competency">
+        <div class="comp-name">Langage C</div>
+        <div class="comp-question">MaÃ®trisez-vous le C (embarquÃ©, systÃ¨me, applicatif) ? Nombre d'annÃ©es de pratique ?</div>
+        <div class="rating-row">
+          <input class="rating-option" type="radio" name="lang_c" id="lang_c_N" value="N"><label for="lang_c_N">N</label>
+          <input class="rating-option" type="radio" name="lang_c" id="lang_c_Np" value="N+"><label for="lang_c_Np">N+</label>
+          <input class="rating-option" type="radio" name="lang_c" id="lang_c_M" value="M"><label for="lang_c_M">M</label>
+          <input class="rating-option" type="radio" name="lang_c" id="lang_c_Mp" value="M+"><label for="lang_c_Mp">M+</label>
+          <input class="rating-option" type="radio" name="lang_c" id="lang_c_E" value="E"><label for="lang_c_E">E</label>
+        </div>
+        <div class="comp-comment"><textarea name="lang_c_comment" placeholder="Contexte, processeurs cibles, annÃ©es de pratique..."></textarea></div>
+      </div>
+
+      <div class="competency">
+        <div class="comp-name">C++</div>
+        <div class="comp-question">Avez-vous utilisÃ© le C++ (embarquÃ©, temps rÃ©el, applicatif) ?</div>
+        <div class="rating-row">
+          <input class="rating-option" type="radio" name="lang_cpp" id="lang_cpp_N" value="N"><label for="lang_cpp_N">N</label>
+          <input class="rating-option" type="radio" name="lang_cpp" id="lang_cpp_Np" value="N+"><label for="lang_cpp_Np">N+</label>
+          <input class="rating-option" type="radio" name="lang_cpp" id="lang_cpp_M" value="M"><label for="lang_cpp_M">M</label>
+          <input class="rating-option" type="radio" name="lang_cpp" id="lang_cpp_Mp" value="M+"><label for="lang_cpp_Mp">M+</label>
+          <input class="rating-option" type="radio" name="lang_cpp" id="lang_cpp_E" value="E"><label for="lang_cpp_E">E</label>
+        </div>
+        <div class="comp-comment"><textarea name="lang_cpp_comment" placeholder="Niveau (STL, hÃ©ritage, templates), contexte..."></textarea></div>
+      </div>
+
+      <div class="competency">
+        <div class="comp-name">OS temps rÃ©el</div>
+        <div class="comp-question">Avez-vous utilisÃ© un RTOS (FreeRTOS, VxWorks, QNX, RTEMS, ThreadX...) ?</div>
+        <div class="rating-row">
+          <input class="rating-option" type="radio" name="rtos" id="rtos_N" value="N"><label for="rtos_N">N</label>
+          <input class="rating-option" type="radio" name="rtos" id="rtos_Np" value="N+"><label for="rtos_Np">N+</label>
+          <input class="rating-option" type="radio" name="rtos" id="rtos_M" value="M"><label for="rtos_M">M</label>
+          <input class="rating-option" type="radio" name="rtos" id="rtos_Mp" value="M+"><label for="rtos_Mp">M+</label>
+          <input class="rating-option" type="radio" name="rtos" id="rtos_E" value="E"><label for="rtos_E">E</label>
+        </div>
+        <div class="comp-comment"><textarea name="rtos_comment" placeholder="OS utilisÃ©, matÃ©riel cible, application critique..."></textarea></div>
+      </div>
+
+      <div class="competency">
+        <div class="comp-name">Unix / Linux</div>
+        <div class="comp-question">Avez-vous travaillÃ© sous Unix/Linux (dÃ©veloppement, administration, embarquÃ©) ?</div>
+        <div class="rating-row">
+          <input class="rating-option" type="radio" name="linux" id="linux_N" value="N"><label for="linux_N">N</label>
+          <input class="rating-option" type="radio" name="linux" id="linux_Np" value="N+"><label for="linux_Np">N+</label>
+          <input class="rating-option" type="radio" name="linux" id="linux_M" value="M"><label for="linux_M">M</label>
+          <input class="rating-option" type="radio" name="linux" id="linux_Mp" value="M+"><label for="linux_Mp">M+</label>
+          <input class="rating-option" type="radio" name="linux" id="linux_E" value="E"><label for="linux_E">E</label>
+        </div>
+        <div class="comp-comment"><textarea name="linux_comment" placeholder="Distributions, contexte (dÃ©veloppement, administration, embarquÃ©)..."></textarea></div>
+      </div>
+
+      <div class="competency">
+        <div class="comp-name">Suivi d'exigences</div>
+        <div class="comp-question">Utilisez-vous des outils de gestion des exigences (DOORS, Polarion, Reqtify...) selon une norme (DO-178, EN 50128...) ?</div>
+        <div class="rating-row">
+          <input class="rating-option" type="radio" name="exigences" id="exigences_N" value="N"><label for="exigences_N">N</label>
+          <input class="rating-option" type="radio" name="exigences" id="exigences_Np" value="N+"><label for="exigences_Np">N+</label>
+          <input class="rating-option" type="radio" name="exigences" id="exigences_M" value="M"><label for="exigences_M">M</label>
+          <input class="rating-option" type="radio" name="exigences" id="exigences_Mp" value="M+"><label for="exigences_Mp">M+</label>
+          <input class="rating-option" type="radio" name="exigences" id="exigences_E" value="E"><label for="exigences_E">E</label>
+        </div>
+        <div class="comp-comment"><textarea name="exigences_comment" placeholder="Outils, normes appliquÃ©es, contexte projet..."></textarea></div>
+      </div>
+
+      <div class="competency">
+        <div class="comp-name">Informatique industrielle</div>
+        <div class="comp-question">Avez-vous travaillÃ© sur des systÃ¨mes industriels (automates, SCADA, bus terrain CAN/Profibus/Ethernet industriel) ?</div>
+        <div class="rating-row">
+          <input class="rating-option" type="radio" name="info_ind" id="info_ind_N" value="N"><label for="info_ind_N">N</label>
+          <input class="rating-option" type="radio" name="info_ind" id="info_ind_Np" value="N+"><label for="info_ind_Np">N+</label>
+          <input class="rating-option" type="radio" name="info_ind" id="info_ind_M" value="M"><label for="info_ind_M">M</label>
+          <input class="rating-option" type="radio" name="info_ind" id="info_ind_Mp" value="M+"><label for="info_ind_Mp">M+</label>
+          <input class="rating-option" type="radio" name="info_ind" id="info_ind_E" value="E"><label for="info_ind_E">E</label>
+        </div>
+        <div class="comp-comment"><textarea name="info_ind_comment" placeholder="SystÃ¨mes utilisÃ©s et contexte..."></textarea></div>
+      </div>
+
+      <div class="competency">
+        <div class="comp-name">Temps rÃ©el / EmbarquÃ© (systÃ¨me)</div>
+        <div class="comp-question">Avez-vous dÃ©veloppÃ© ou intÃ©grÃ© des systÃ¨mes temps rÃ©el ou embarquÃ©s complets ?</div>
+        <div class="rating-row">
+          <input class="rating-option" type="radio" name="temps_reel" id="temps_reel_N" value="N"><label for="temps_reel_N">N</label>
+          <input class="rating-option" type="radio" name="temps_reel" id="temps_reel_Np" value="N+"><label for="temps_reel_Np">N+</label>
+          <input class="rating-option" type="radio" name="temps_reel" id="temps_reel_M" value="M"><label for="temps_reel_M">M</label>
+          <input class="rating-option" type="radio" name="temps_reel" id="temps_reel_Mp" value="M+"><label for="temps_reel_Mp">M+</label>
+          <input class="rating-option" type="radio" name="temps_reel" id="temps_reel_E" value="E"><label for="temps_reel_E">E</label>
+        </div>
+        <div class="comp-comment"><textarea name="temps_reel_comment" placeholder="OS, cibles matÃ©rielles, langages, contraintes temps rÃ©el..."></textarea></div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- SECTION 5 : SECTEURS -->
+  <div class="section">
+    <div class="section-header">
+      <h2>Secteurs d'expÃ©rience</h2>
+      <span>Cochez vos niveaux par secteur</span>
+    </div>
+    <div class="section-body">
+      <div class="competency">
+        <div class="comp-name">AÃ©ronautique / Spatial</div>
+        <div class="comp-question">Avez-vous travaillÃ© dans le secteur aÃ©ronautique ou spatial (DO-178, DO-254, ARP4754...) ?</div>
+        <div class="rating-row">
+          <input class="rating-option" type="radio" name="sect_aero" id="sect_aero_N" value="N"><label for="sect_aero_N">N</label>
+          <input class="rating-option" type="radio" name="sect_aero" id="sect_aero_Np" value="N+"><label for="sect_aero_Np">N+</label>
+          <input class="rating-option" type="radio" name="sect_aero" id="sect_aero_M" value="M"><label for="sect_aero_M">M</label>
+          <input class="rating-option" type="radio" name="sect_aero" id="sect_aero_Mp" value="M+"><label for="sect_aero_Mp">M+</label>
+          <input class="rating-option" type="radio" name="sect_aero" id="sect_aero_E" value="E"><label for="sect_aero_E">E</label>
+        </div>
+      </div>
+      <div class="competency">
+        <div class="comp-name">DÃ©fense / Militaire</div>
+        <div class="comp-question">Avez-vous travaillÃ© sur des projets dÃ©fense (normes MIL, habilitation, sÃ©curitÃ©...) ?</div>
+        <div class="rating-row">
+          <input class="rating-option" type="radio" name="sect_defense" id="sect_defense_N" value="N"><label for="sect_defense_N">N</label>
+          <input class="rating-option" type="radio" name="sect_defense" id="sect_defense_Np" value="N+"><label for="sect_defense_Np">N+</label>
+          <input class="rating-option" type="radio" name="sect_defense" id="sect_defense_M" value="M"><label for="sect_defense_M">M</label>
+          <input class="rating-option" type="radio" name="sect_defense" id="sect_defense_Mp" value="M+"><label for="sect_defense_Mp">M+</label>
+          <input class="rating-option" type="radio" name="sect_defense" id="sect_defense_E" value="E"><label for="sect_defense_E">E</label>
+        </div>
+      </div>
+      <div class="competency">
+        <div class="comp-name">Automobile</div>
+        <div class="comp-question">Avez-vous travaillÃ© dans l'industrie automobile (AUTOSAR, CAN, ISO 26262...) ?</div>
+        <div class="rating-row">
+          <input class="rating-option" type="radio" name="sect_auto" id="sect_auto_N" value="N"><label for="sect_auto_N">N</label>
+          <input class="rating-option" type="radio" name="sect_auto" id="sect_auto_Np" value="N+"><label for="sect_auto_Np">N+</label>
+          <input class="rating-option" type="radio" name="sect_auto" id="sect_auto_M" value="M"><label for="sect_auto_M">M</label>
+          <input class="rating-option" type="radio" name="sect_auto" id="sect_auto_Mp" value="M+"><label for="sect_auto_Mp">M+</label>
+          <input class="rating-option" type="radio" name="sect_auto" id="sect_auto_E" value="E"><label for="sect_auto_E">E</label>
+        </div>
+      </div>
+      <div class="competency">
+        <div class="comp-name">Industriel</div>
+        <div class="comp-question">Avez-vous de l'expÃ©rience en milieu industriel (machines, process, automatismes...) ?</div>
+        <div class="rating-row">
+          <input class="rating-option" type="radio" name="sect_indus" id="sect_indus_N" value="N"><label for="sect_indus_N">N</label>
+          <input class="rating-option" type="radio" name="sect_indus" id="sect_indus_Np" value="N+"><label for="sect_indus_Np">N+</label>
+          <input class="rating-option" type="radio" name="sect_indus" id="sect_indus_M" value="M"><label for="sect_indus_M">M</label>
+          <input class="rating-option" type="radio" name="sect_indus" id="sect_indus_Mp" value="M+"><label for="sect_indus_Mp">M+</label>
+          <input class="rating-option" type="radio" name="sect_indus" id="sect_indus_E" value="E"><label for="sect_indus_E">E</label>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SUBMIT -->
+  <div class="submit-area">
+    <button type="submit" class="btn-submit">Envoyer mon auto-Ã©valuation</button>
+    <p class="submit-note">Vos rÃ©ponses sont transmises en toute confidentialitÃ© Ã  l'Ã©quipe de recrutement.</p>
+  </div>
+
+</form>
+
+<!-- CONFIRMATION -->
+<div id="confirmation">
+  <div class="icon">â</div>
+  <h2>Merci pour votre rÃ©ponse !</h2>
+  <p>Votre auto-Ã©valuation a bien Ã©tÃ© enregistrÃ©e. Notre Ã©quipe analysera votre profil et vous contactera prochainement pour les missions correspondant Ã  vos compÃ©tences.</p>
+</div>
+
+<script>
+  // âââ CONFIG âââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââ
+  // Remplacer par l'URL du webhook Make quand il sera prÃªt
+  const WEBHOOK_URL = "VOTRE_URL_MAKE_WEBHOOK_ICI";
+  // ââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââ
+
+  document.getElementById('mainForm').addEventListener('submit', async function(e) {
+    e.preventDefault();
+
+    const formData = new FormData(this);
+    const data = {};
+    for (let [key, value] of formData.entries()) {
+      data[key] = value;
+    }
+    data.date_soumission = new Date().toLocaleDateString('fr-FR');
+
+    if (WEBHOOK_URL === "VOTRE_URL_MAKE_WEBHOOK_ICI") {
+      // Mode dÃ©mo : afficher les donnÃ©es dans la console
+      console.log("DonnÃ©es Ã  envoyer :", JSON.stringify(data, null, 2));
+      document.getElementById('mainForm').style.display = 'none';
+      document.getElementById('confirmation').style.display = 'block';
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+      return;
+    }
+
+    try {
+      await fetch(WEBHOOK_URL, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(data)
+      });
+      document.getElementById('mainForm').style.display = 'none';
+      document.getElementById('confirmation').style.display = 'block';
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    } catch (err) {
+      alert("Erreur lors de l'envoi. Veuillez rÃ©essayer ou contacter le recruteur.");
+    }
+  });
+</script>
+</body>
+</html>

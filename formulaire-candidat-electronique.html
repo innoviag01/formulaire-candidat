@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Auto-Ã©valuation des compÃ©tences â Ãlectronique embarquÃ©e</title>
+<title>Auto-évaluation des compétences — Électronique embarquée</title>
 <style>
   :root {
     --primary: #1a56db;
@@ -111,60 +111,60 @@
 <body>
 
 <div class="header">
-  <h1>Auto-Ã©valuation des compÃ©tences</h1>
-  <p>ComplÃ©tez ce formulaire pour nous permettre d'identifier les missions qui correspondent le mieux Ã  votre profil. Tous les champs de notation sont facultatifs â Ã©valuez uniquement les compÃ©tences que vous avez pratiquÃ©es.</p>
+  <h1>Auto-évaluation des compétences</h1>
+  <p>Complétez ce formulaire pour nous permettre d'identifier les missions qui correspondent le mieux à votre profil. Tous les champs de notation sont facultatifs — évaluez uniquement les compétences que vous avez pratiquées.</p>
 </div>
 
 <form id="mainForm">
 
-  <!-- LÃGENDE -->
+  <!-- LÉGENDE -->
   <div class="legend">
-    <h3>SystÃ¨me de notation</h3>
+    <h3>Système de notation</h3>
     <div class="legend-grid">
-      <div class="legend-item"><span class="badge badge-N">N</span><span>Notions thÃ©oriques ou scolaires</span></div>
-      <div class="legend-item"><span class="badge badge-Np">N+</span><span>PremiÃ¨re mise en pratique ou stage significatif</span></div>
-      <div class="legend-item"><span class="badge badge-M">M</span><span>MaÃ®trise â pratique &gt; 6 mois</span></div>
-      <div class="legend-item"><span class="badge badge-Mp">M+</span><span>MaÃ®trise confirmÃ©e â pratique &gt; 2 ans</span></div>
-      <div class="legend-item"><span class="badge badge-E">E</span><span>Expertise â conseil et formation possibles</span></div>
+      <div class="legend-item"><span class="badge badge-N">N</span><span>Notions théoriques ou scolaires</span></div>
+      <div class="legend-item"><span class="badge badge-Np">N+</span><span>Première mise en pratique ou stage significatif</span></div>
+      <div class="legend-item"><span class="badge badge-M">M</span><span>Maîtrise — pratique &gt; 6 mois</span></div>
+      <div class="legend-item"><span class="badge badge-Mp">M+</span><span>Maîtrise confirmée — pratique &gt; 2 ans</span></div>
+      <div class="legend-item"><span class="badge badge-E">E</span><span>Expertise — conseil et formation possibles</span></div>
     </div>
   </div>
 
-  <!-- IDENTITÃ -->
+  <!-- IDENTITÉ -->
   <div class="identity-card">
     <h2>Vos informations</h2>
     <div class="field-row">
-      <div><label for="prenom">PrÃ©nom *</label><input type="text" id="prenom" name="prenom" required placeholder="Jean"></div>
+      <div><label for="prenom">Prénom *</label><input type="text" id="prenom" name="prenom" required placeholder="Jean"></div>
       <div><label for="nom">Nom *</label><input type="text" id="nom" name="nom" required placeholder="Dupont"></div>
     </div>
     <div class="field-row">
       <div><label for="email">Email *</label><input type="email" id="email" name="email" required placeholder="jean.dupont@email.com"></div>
-      <div><label for="telephone">TÃ©lÃ©phone</label><input type="tel" id="telephone" name="telephone" placeholder="+33 6 00 00 00 00"></div>
+      <div><label for="telephone">Téléphone</label><input type="tel" id="telephone" name="telephone" placeholder="+33 6 00 00 00 00"></div>
     </div>
     <div class="field-row">
       <div><label for="ville">Ville</label><input type="text" id="ville" name="ville" placeholder="Paris, Lyon, Toulouse..."></div>
-      <div><label for="disponibilite">DisponibilitÃ©</label>
+      <div><label for="disponibilite">Disponibilité</label>
         <select id="disponibilite" name="disponibilite">
-          <option value="">â SÃ©lectionner â</option>
-          <option>ImmÃ©diate</option>
+          <option value="">— Sélectionner —</option>
+          <option>Immédiate</option>
           <option>1 mois</option>
           <option>3 mois</option>
-          <option>Ã dÃ©finir</option>
+          <option>À définir</option>
         </select>
       </div>
     </div>
   </div>
 
-  <!-- SECTION 1 : PROFIL GÃNÃRAL -->
+  <!-- SECTION 1 : PROFIL GÉNÉRAL -->
   <div class="section">
     <div class="section-header">
-      <h2>Profil gÃ©nÃ©ral</h2>
-      <span>5 compÃ©tences</span>
+      <h2>Profil général</h2>
+      <span>5 compétences</span>
     </div>
     <div class="section-body">
 
       <div class="competency">
-        <div class="comp-name">SpÃ©cification / RÃ©daction de documents</div>
-        <div class="comp-question">Avez-vous rÃ©digÃ© des cahiers des charges, spÃ©cifications techniques ou documents de conception ?</div>
+        <div class="comp-name">Spécification / Rédaction de documents</div>
+        <div class="comp-question">Avez-vous rédigé des cahiers des charges, spécifications techniques ou documents de conception ?</div>
         <div class="rating-row">
           <input class="rating-option" type="radio" name="spec_redac" id="spec_redac_N" value="N"><label for="spec_redac_N">N</label>
           <input class="rating-option" type="radio" name="spec_redac" id="spec_redac_Np" value="N+"><label for="spec_redac_Np">N+</label>
@@ -172,12 +172,12 @@
           <input class="rating-option" type="radio" name="spec_redac" id="spec_redac_Mp" value="M+"><label for="spec_redac_Mp">M+</label>
           <input class="rating-option" type="radio" name="spec_redac" id="spec_redac_E" value="E"><label for="spec_redac_E">E</label>
         </div>
-        <div class="comp-comment"><textarea name="spec_redac_comment" placeholder="PrÃ©cisez : type de documents, autonomie, contexte projet..."></textarea></div>
+        <div class="comp-comment"><textarea name="spec_redac_comment" placeholder="Précisez : type de documents, autonomie, contexte projet..."></textarea></div>
       </div>
 
       <div class="competency">
-        <div class="comp-name">Analyse / Conception / DÃ©veloppement</div>
-        <div class="comp-question">Avez-vous menÃ© des phases d'analyse, de conception ou de dÃ©veloppement technique ?</div>
+        <div class="comp-name">Analyse / Conception / Développement</div>
+        <div class="comp-question">Avez-vous mené des phases d'analyse, de conception ou de développement technique ?</div>
         <div class="rating-row">
           <input class="rating-option" type="radio" name="conception" id="conception_N" value="N"><label for="conception_N">N</label>
           <input class="rating-option" type="radio" name="conception" id="conception_Np" value="N+"><label for="conception_Np">N+</label>
@@ -185,12 +185,12 @@
           <input class="rating-option" type="radio" name="conception" id="conception_Mp" value="M+"><label for="conception_Mp">M+</label>
           <input class="rating-option" type="radio" name="conception" id="conception_E" value="E"><label for="conception_E">E</label>
         </div>
-        <div class="comp-comment"><textarea name="conception_comment" placeholder="DÃ©crivez un projet reprÃ©sentatif et votre rÃ´le..."></textarea></div>
+        <div class="comp-comment"><textarea name="conception_comment" placeholder="Décrivez un projet représentatif et votre rôle..."></textarea></div>
       </div>
 
       <div class="competency">
-        <div class="comp-name">IntÃ©gration, validation, tests</div>
-        <div class="comp-question">Avez-vous participÃ© Ã  des phases d'intÃ©gration systÃ¨me ou de validation / tests ?</div>
+        <div class="comp-name">Intégration, validation, tests</div>
+        <div class="comp-question">Avez-vous participé à des phases d'intégration système ou de validation / tests ?</div>
         <div class="rating-row">
           <input class="rating-option" type="radio" name="integration" id="integration_N" value="N"><label for="integration_N">N</label>
           <input class="rating-option" type="radio" name="integration" id="integration_Np" value="N+"><label for="integration_Np">N+</label>
@@ -198,12 +198,12 @@
           <input class="rating-option" type="radio" name="integration" id="integration_Mp" value="M+"><label for="integration_Mp">M+</label>
           <input class="rating-option" type="radio" name="integration" id="integration_E" value="E"><label for="integration_E">E</label>
         </div>
-        <div class="comp-comment"><textarea name="integration_comment" placeholder="Outils et mÃ©thodes utilisÃ©s (banc de test, protocoles...)..."></textarea></div>
+        <div class="comp-comment"><textarea name="integration_comment" placeholder="Outils et méthodes utilisés (banc de test, protocoles...)..."></textarea></div>
       </div>
 
       <div class="competency">
-        <div class="comp-name">Management (projet ou gÃ©nÃ©ral)</div>
-        <div class="comp-question">Avez-vous managÃ© une Ã©quipe ou pilotÃ© un projet ?</div>
+        <div class="comp-name">Management (projet ou général)</div>
+        <div class="comp-question">Avez-vous managé une équipe ou piloté un projet ?</div>
         <div class="rating-row">
           <input class="rating-option" type="radio" name="management" id="management_N" value="N"><label for="management_N">N</label>
           <input class="rating-option" type="radio" name="management" id="management_Np" value="N+"><label for="management_Np">N+</label>
@@ -211,12 +211,12 @@
           <input class="rating-option" type="radio" name="management" id="management_Mp" value="M+"><label for="management_Mp">M+</label>
           <input class="rating-option" type="radio" name="management" id="management_E" value="E"><label for="management_E">E</label>
         </div>
-        <div class="comp-comment"><textarea name="management_comment" placeholder="Combien de personnes, quelle durÃ©e, quel budget gÃ©rÃ© ?..."></textarea></div>
+        <div class="comp-comment"><textarea name="management_comment" placeholder="Combien de personnes, quelle durée, quel budget géré ?..."></textarea></div>
       </div>
 
       <div class="competency">
         <div class="comp-name">Industrialisation / Fabrication</div>
-        <div class="comp-question">Avez-vous travaillÃ© en phase d'industrialisation ou en lien avec la fabrication Ã©lectronique (DFM, DFT, passage sÃ©rie, EMS...) ?</div>
+        <div class="comp-question">Avez-vous travaillé en phase d'industrialisation ou en lien avec la fabrication électronique (DFM, DFT, passage série, EMS...) ?</div>
         <div class="rating-row">
           <input class="rating-option" type="radio" name="industrialisation" id="industrialisation_N" value="N"><label for="industrialisation_N">N</label>
           <input class="rating-option" type="radio" name="industrialisation" id="industrialisation_Np" value="N+"><label for="industrialisation_Np">N+</label>
@@ -224,23 +224,23 @@
           <input class="rating-option" type="radio" name="industrialisation" id="industrialisation_Mp" value="M+"><label for="industrialisation_Mp">M+</label>
           <input class="rating-option" type="radio" name="industrialisation" id="industrialisation_E" value="E"><label for="industrialisation_E">E</label>
         </div>
-        <div class="comp-comment"><textarea name="industrialisation_comment" placeholder="Quels processus maÃ®trisez-vous ?..."></textarea></div>
+        <div class="comp-comment"><textarea name="industrialisation_comment" placeholder="Quels processus maîtrisez-vous ?..."></textarea></div>
       </div>
 
     </div>
   </div>
 
-  <!-- SECTION 2 : ÃLECTRONIQUE -->
+  <!-- SECTION 2 : ÉLECTRONIQUE -->
   <div class="section">
     <div class="section-header">
-      <h2>Ãlectronique</h2>
-      <span>5 compÃ©tences</span>
+      <h2>Électronique</h2>
+      <span>5 compétences</span>
     </div>
     <div class="section-body">
 
       <div class="competency">
         <div class="comp-name">Analogique (BF, petits signaux)</div>
-        <div class="comp-question">MaÃ®trisez-vous l'Ã©lectronique analogique basse frÃ©quence (amplis op, filtres, rÃ©gulateurs, capteurs...) ?</div>
+        <div class="comp-question">Maîtrisez-vous l'électronique analogique basse fréquence (amplis op, filtres, régulateurs, capteurs...) ?</div>
         <div class="rating-row">
           <input class="rating-option" type="radio" name="analogique" id="analogique_N" value="N"><label for="analogique_N">N</label>
           <input class="rating-option" type="radio" name="analogique" id="analogique_Np" value="N+"><label for="analogique_Np">N+</label>
@@ -248,12 +248,12 @@
           <input class="rating-option" type="radio" name="analogique" id="analogique_Mp" value="M+"><label for="analogique_Mp">M+</label>
           <input class="rating-option" type="radio" name="analogique" id="analogique_E" value="E"><label for="analogique_E">E</label>
         </div>
-        <div class="comp-comment"><textarea name="analogique_comment" placeholder="Exemple de rÃ©alisation concrÃ¨te..."></textarea></div>
+        <div class="comp-comment"><textarea name="analogique_comment" placeholder="Exemple de réalisation concrète..."></textarea></div>
       </div>
 
       <div class="competency">
-        <div class="comp-name">NumÃ©rique (processeurs, pÃ©riphÃ©riques)</div>
-        <div class="comp-question">Avez-vous conÃ§u ou intÃ©grÃ© des cartes numÃ©riques (microprocesseurs, mÃ©moires, interfaces...) ?</div>
+        <div class="comp-name">Numérique (processeurs, périphériques)</div>
+        <div class="comp-question">Avez-vous conçu ou intégré des cartes numériques (microprocesseurs, mémoires, interfaces...) ?</div>
         <div class="rating-row">
           <input class="rating-option" type="radio" name="numerique" id="numerique_N" value="N"><label for="numerique_N">N</label>
           <input class="rating-option" type="radio" name="numerique" id="numerique_Np" value="N+"><label for="numerique_Np">N+</label>
@@ -266,7 +266,7 @@
 
       <div class="competency">
         <div class="comp-name">Logique programmable (FPGA, VHDL)</div>
-        <div class="comp-question">Avez-vous utilisÃ© de la logique programmable FPGA/CPLD ? Quels langages (VHDL, Verilog) ?</div>
+        <div class="comp-question">Avez-vous utilisé de la logique programmable FPGA/CPLD ? Quels langages (VHDL, Verilog) ?</div>
         <div class="rating-row">
           <input class="rating-option" type="radio" name="fpga_elec" id="fpga_elec_N" value="N"><label for="fpga_elec_N">N</label>
           <input class="rating-option" type="radio" name="fpga_elec" id="fpga_elec_Np" value="N+"><label for="fpga_elec_Np">N+</label>
@@ -274,12 +274,12 @@
           <input class="rating-option" type="radio" name="fpga_elec" id="fpga_elec_Mp" value="M+"><label for="fpga_elec_Mp">M+</label>
           <input class="rating-option" type="radio" name="fpga_elec" id="fpga_elec_E" value="E"><label for="fpga_elec_E">E</label>
         </div>
-        <div class="comp-comment"><textarea name="fpga_elec_comment" placeholder="Outils de synthÃ¨se (Vivado, Quartus...), projets..."></textarea></div>
+        <div class="comp-comment"><textarea name="fpga_elec_comment" placeholder="Outils de synthèse (Vivado, Quartus...), projets..."></textarea></div>
       </div>
 
       <div class="competency">
-        <div class="comp-name">CEM (CompatibilitÃ© ÃlectromagnÃ©tique)</div>
-        <div class="comp-question">Avez-vous gÃ©rÃ© des problÃ©matiques de CEM (conception, tests chambre anÃ©choÃ¯que, normes EN/MIL-STD...) ?</div>
+        <div class="comp-name">CEM (Compatibilité Électromagnétique)</div>
+        <div class="comp-question">Avez-vous géré des problématiques de CEM (conception, tests chambre anéchoïque, normes EN/MIL-STD...) ?</div>
         <div class="rating-row">
           <input class="rating-option" type="radio" name="cem" id="cem_N" value="N"><label for="cem_N">N</label>
           <input class="rating-option" type="radio" name="cem" id="cem_Np" value="N+"><label for="cem_Np">N+</label>
@@ -287,12 +287,12 @@
           <input class="rating-option" type="radio" name="cem" id="cem_Mp" value="M+"><label for="cem_Mp">M+</label>
           <input class="rating-option" type="radio" name="cem" id="cem_E" value="E"><label for="cem_E">E</label>
         </div>
-        <div class="comp-comment"><textarea name="cem_comment" placeholder="DÃ©crivez votre expÃ©rience CEM..."></textarea></div>
+        <div class="comp-comment"><textarea name="cem_comment" placeholder="Décrivez votre expérience CEM..."></textarea></div>
       </div>
 
       <div class="competency">
-        <div class="comp-name">SOPC et Linux embarquÃ©</div>
-        <div class="comp-question">Avez-vous de l'expÃ©rience avec des systÃ¨mes SOPC (Zynq, Cyclone V SoC) ou Linux embarquÃ© ?</div>
+        <div class="comp-name">SOPC et Linux embarqué</div>
+        <div class="comp-question">Avez-vous de l'expérience avec des systèmes SOPC (Zynq, Cyclone V SoC) ou Linux embarqué ?</div>
         <div class="rating-row">
           <input class="rating-option" type="radio" name="sopc" id="sopc_N" value="N"><label for="sopc_N">N</label>
           <input class="rating-option" type="radio" name="sopc" id="sopc_Np" value="N+"><label for="sopc_Np">N+</label>
@@ -300,7 +300,7 @@
           <input class="rating-option" type="radio" name="sopc" id="sopc_Mp" value="M+"><label for="sopc_Mp">M+</label>
           <input class="rating-option" type="radio" name="sopc" id="sopc_E" value="E"><label for="sopc_E">E</label>
         </div>
-        <div class="comp-comment"><textarea name="sopc_comment" placeholder="Cibles matÃ©rielles et applications..."></textarea></div>
+        <div class="comp-comment"><textarea name="sopc_comment" placeholder="Cibles matérielles et applications..."></textarea></div>
       </div>
 
     </div>
@@ -310,13 +310,13 @@
   <div class="section">
     <div class="section-header">
       <h2>Outils & Composants</h2>
-      <span>8 compÃ©tences</span>
+      <span>8 compétences</span>
     </div>
     <div class="section-body">
 
       <div class="competency">
-        <div class="comp-name">MicrocontrÃ´leurs</div>
-        <div class="comp-question">Quels microcontrÃ´leurs avez-vous programmÃ©s ? (STM32, PIC, AVR, NXP, Renesas...)</div>
+        <div class="comp-name">Microcontrôleurs</div>
+        <div class="comp-question">Quels microcontrôleurs avez-vous programmés ? (STM32, PIC, AVR, NXP, Renesas...)</div>
         <div class="rating-row">
           <input class="rating-option" type="radio" name="uc" id="uc_N" value="N"><label for="uc_N">N</label>
           <input class="rating-option" type="radio" name="uc" id="uc_Np" value="N+"><label for="uc_Np">N+</label>
@@ -324,12 +324,12 @@
           <input class="rating-option" type="radio" name="uc" id="uc_Mp" value="M+"><label for="uc_Mp">M+</label>
           <input class="rating-option" type="radio" name="uc" id="uc_E" value="E"><label for="uc_E">E</label>
         </div>
-        <div class="comp-comment"><textarea name="uc_comment" placeholder="Familles utilisÃ©es, pÃ©riphÃ©riques (CAN, SPI, I2C, UART, ADC...), bare metal ou RTOS..."></textarea></div>
+        <div class="comp-comment"><textarea name="uc_comment" placeholder="Familles utilisées, périph�riques (CAN, SPI, I2C, UART, ADC...), bare metal ou RTOS..."></textarea></div>
       </div>
 
       <div class="competency">
         <div class="comp-name">Microprocesseurs</div>
-        <div class="comp-question">Avez-vous travaillÃ© avec des microprocesseurs (ARM Cortex-A, x86, PowerPC...) au niveau BSP ou pilotes ?</div>
+        <div class="comp-question">Avez-vous travaillé avec des microprocesseurs (ARM Cortex-A, x86, PowerPC...) au niveau BSP ou pilotes ?</div>
         <div class="rating-row">
           <input class="rating-option" type="radio" name="up" id="up_N" value="N"><label for="up_N">N</label>
           <input class="rating-option" type="radio" name="up" id="up_Np" value="N+"><label for="up_Np">N+</label>
@@ -337,12 +337,12 @@
           <input class="rating-option" type="radio" name="up" id="up_Mp" value="M+"><label for="up_Mp">M+</label>
           <input class="rating-option" type="radio" name="up" id="up_E" value="E"><label for="up_E">E</label>
         </div>
-        <div class="comp-comment"><textarea name="up_comment" placeholder="Architectures et OS ciblÃ©s..."></textarea></div>
+        <div class="comp-comment"><textarea name="up_comment" placeholder="Architectures et OS ciblés..."></textarea></div>
       </div>
 
       <div class="competency">
         <div class="comp-name">FPGA</div>
-        <div class="comp-question">Avez-vous dÃ©veloppÃ© sur FPGA ? Quelles familles (Xilinx/AMD, Intel/Altera, Lattice) ?</div>
+        <div class="comp-question">Avez-vous développé sur FPGA ? Quelles familles (Xilinx/AMD, Intel/Altera, Lattice) ?</div>
         <div class="rating-row">
           <input class="rating-option" type="radio" name="fpga" id="fpga_N" value="N"><label for="fpga_N">N</label>
           <input class="rating-option" type="radio" name="fpga" id="fpga_Np" value="N+"><label for="fpga_Np">N+</label>
@@ -350,12 +350,12 @@
           <input class="rating-option" type="radio" name="fpga" id="fpga_Mp" value="M+"><label for="fpga_Mp">M+</label>
           <input class="rating-option" type="radio" name="fpga" id="fpga_E" value="E"><label for="fpga_E">E</label>
         </div>
-        <div class="comp-comment"><textarea name="fpga_comment" placeholder="Projet reprÃ©sentatif, outils (Vivado, Quartus)..."></textarea></div>
+        <div class="comp-comment"><textarea name="fpga_comment" placeholder="Projet représentatif, outils (Vivado, Quartus)..."></textarea></div>
       </div>
 
       <div class="competency">
         <div class="comp-name">VHDL</div>
-        <div class="comp-question">MaÃ®trisez-vous le VHDL ? (RTL, IP cores, testbenches, simulation ModelSim/GHDL...)</div>
+        <div class="comp-question">Maîtrisez-vous le VHDL ? (RTL, IP cores, testbenches, simulation ModelSim/GHDL...)</div>
         <div class="rating-row">
           <input class="rating-option" type="radio" name="vhdl" id="vhdl_N" value="N"><label for="vhdl_N">N</label>
           <input class="rating-option" type="radio" name="vhdl" id="vhdl_Np" value="N+"><label for="vhdl_Np">N+</label>
@@ -363,12 +363,12 @@
           <input class="rating-option" type="radio" name="vhdl" id="vhdl_Mp" value="M+"><label for="vhdl_Mp">M+</label>
           <input class="rating-option" type="radio" name="vhdl" id="vhdl_E" value="E"><label for="vhdl_E">E</label>
         </div>
-        <div class="comp-comment"><textarea name="vhdl_comment" placeholder="Type d'architectures dÃ©veloppÃ©es..."></textarea></div>
+        <div class="comp-comment"><textarea name="vhdl_comment" placeholder="Type d'architectures développées..."></textarea></div>
       </div>
 
       <div class="competency">
         <div class="comp-name">DSP</div>
-        <div class="comp-question">Avez-vous travaillÃ© avec des DSP (TI C2000/C6000, ADI Blackfin/SHARC...) ?</div>
+        <div class="comp-question">Avez-vous travaillé avec des DSP (TI C2000/C6000, ADI Blackfin/SHARC...) ?</div>
         <div class="rating-row">
           <input class="rating-option" type="radio" name="dsp" id="dsp_N" value="N"><label for="dsp_N">N</label>
           <input class="rating-option" type="radio" name="dsp" id="dsp_Np" value="N+"><label for="dsp_Np">N+</label>
@@ -376,12 +376,12 @@
           <input class="rating-option" type="radio" name="dsp" id="dsp_Mp" value="M+"><label for="dsp_Mp">M+</label>
           <input class="rating-option" type="radio" name="dsp" id="dsp_E" value="E"><label for="dsp_E">E</label>
         </div>
-        <div class="comp-comment"><textarea name="dsp_comment" placeholder="Applications (audio, radar, contrÃ´le moteur...)..."></textarea></div>
+        <div class="comp-comment"><textarea name="dsp_comment" placeholder="Applications (audio, radar, contrôle moteur...)..."></textarea></div>
       </div>
 
       <div class="competency">
         <div class="comp-name">RF / HF</div>
-        <div class="comp-question">Avez-vous de l'expÃ©rience en Ã©lectronique RF/HF (circuits RF, VNA, chaÃ®nes d'amplification, antennes...) ?</div>
+        <div class="comp-question">Avez-vous de l'expérience en électronique RF/HF (circuits RF, VNA, chaînes d'amplification, antennes...) ?</div>
         <div class="rating-row">
           <input class="rating-option" type="radio" name="rf" id="rf_N" value="N"><label for="rf_N">N</label>
           <input class="rating-option" type="radio" name="rf" id="rf_Np" value="N+"><label for="rf_Np">N+</label>
@@ -389,12 +389,12 @@
           <input class="rating-option" type="radio" name="rf" id="rf_Mp" value="M+"><label for="rf_Mp">M+</label>
           <input class="rating-option" type="radio" name="rf" id="rf_E" value="E"><label for="rf_E">E</label>
         </div>
-        <div class="comp-comment"><textarea name="rf_comment" placeholder="Plage de frÃ©quence, type de projets..."></textarea></div>
+        <div class="comp-comment"><textarea name="rf_comment" placeholder="Plage de fréquence, type de projets..."></textarea></div>
       </div>
 
       <div class="competency">
-        <div class="comp-name">CAO SchÃ©matique</div>
-        <div class="comp-question">MaÃ®trisez-vous la CAO schÃ©matique Ã©lectronique (Altium, OrCAD, KiCad, Mentor...) ?</div>
+        <div class="comp-name">CAO Schématique</div>
+        <div class="comp-question">Maîtrisez-vous la CAO schématique électronique (Altium, OrCAD, KiCad, Mentor...) ?</div>
         <div class="rating-row">
           <input class="rating-option" type="radio" name="cao_schema" id="cao_schema_N" value="N"><label for="cao_schema_N">N</label>
           <input class="rating-option" type="radio" name="cao_schema" id="cao_schema_Np" value="N+"><label for="cao_schema_Np">N+</label>
@@ -402,12 +402,12 @@
           <input class="rating-option" type="radio" name="cao_schema" id="cao_schema_Mp" value="M+"><label for="cao_schema_Mp">M+</label>
           <input class="rating-option" type="radio" name="cao_schema" id="cao_schema_E" value="E"><label for="cao_schema_E">E</label>
         </div>
-        <div class="comp-comment"><textarea name="cao_schema_comment" placeholder="Outils utilisÃ©s, type de cartes (numÃ©rique, mixte, puissance)..."></textarea></div>
+        <div class="comp-comment"><textarea name="cao_schema_comment" placeholder="Outils utilisés, type de cartes (numérique, mixte, puissance)..."></textarea></div>
       </div>
 
       <div class="competency">
         <div class="comp-name">CAO Place & Route (PCB)</div>
-        <div class="comp-question">Avez-vous rÃ©alisÃ© du placement-routage PCB ? Nombre de couches max, contraintes HF ou CEM ?</div>
+        <div class="comp-question">Avez-vous réalisé du placement-routage PCB ? Nombre de couches max, contraintes HF ou CEM ?</div>
         <div class="rating-row">
           <input class="rating-option" type="radio" name="cao_pcb" id="cao_pcb_N" value="N"><label for="cao_pcb_N">N</label>
           <input class="rating-option" type="radio" name="cao_pcb" id="cao_pcb_Np" value="N+"><label for="cao_pcb_Np">N+</label>
@@ -421,17 +421,17 @@
     </div>
   </div>
 
-  <!-- SECTION 4 : LANGAGES & MÃTHODES -->
+  <!-- SECTION 4 : LANGAGES & MÉTHODES -->
   <div class="section">
     <div class="section-header">
-      <h2>Langages & MÃ©thodes</h2>
-      <span>7 compÃ©tences</span>
+      <h2>Langages & Méthodes</h2>
+      <span>7 compétences</span>
     </div>
     <div class="section-body">
 
       <div class="competency">
         <div class="comp-name">Langage C</div>
-        <div class="comp-question">MaÃ®trisez-vous le C (embarquÃ©, systÃ¨me, applicatif) ? Nombre d'annÃ©es de pratique ?</div>
+        <div class="comp-question">Maîtrisez-vous le C (embarqué, système, applicatif) ? Nombre d'années de pratique ?</div>
         <div class="rating-row">
           <input class="rating-option" type="radio" name="lang_c" id="lang_c_N" value="N"><label for="lang_c_N">N</label>
           <input class="rating-option" type="radio" name="lang_c" id="lang_c_Np" value="N+"><label for="lang_c_Np">N+</label>
@@ -439,12 +439,12 @@
           <input class="rating-option" type="radio" name="lang_c" id="lang_c_Mp" value="M+"><label for="lang_c_Mp">M+</label>
           <input class="rating-option" type="radio" name="lang_c" id="lang_c_E" value="E"><label for="lang_c_E">E</label>
         </div>
-        <div class="comp-comment"><textarea name="lang_c_comment" placeholder="Contexte, processeurs cibles, annÃ©es de pratique..."></textarea></div>
+        <div class="comp-comment"><textarea name="lang_c_comment" placeholder="Contexte, processeurs cibles, années de pratique..."></textarea></div>
       </div>
 
       <div class="competency">
         <div class="comp-name">C++</div>
-        <div class="comp-question">Avez-vous utilisÃ© le C++ (embarquÃ©, temps rÃ©el, applicatif) ?</div>
+        <div class="comp-question">Avez-vous utilisé le C++ (embarqué, temps réel, applicatif) ?</div>
         <div class="rating-row">
           <input class="rating-option" type="radio" name="lang_cpp" id="lang_cpp_N" value="N"><label for="lang_cpp_N">N</label>
           <input class="rating-option" type="radio" name="lang_cpp" id="lang_cpp_Np" value="N+"><label for="lang_cpp_Np">N+</label>
@@ -452,12 +452,12 @@
           <input class="rating-option" type="radio" name="lang_cpp" id="lang_cpp_Mp" value="M+"><label for="lang_cpp_Mp">M+</label>
           <input class="rating-option" type="radio" name="lang_cpp" id="lang_cpp_E" value="E"><label for="lang_cpp_E">E</label>
         </div>
-        <div class="comp-comment"><textarea name="lang_cpp_comment" placeholder="Niveau (STL, hÃ©ritage, templates), contexte..."></textarea></div>
+        <div class="comp-comment"><textarea name="lang_cpp_comment" placeholder="Niveau (STL, héritage, templates), contexte..."></textarea></div>
       </div>
 
       <div class="competency">
-        <div class="comp-name">OS temps rÃ©el</div>
-        <div class="comp-question">Avez-vous utilisÃ© un RTOS (FreeRTOS, VxWorks, QNX, RTEMS, ThreadX...) ?</div>
+        <div class="comp-name">OS temps réel</div>
+        <div class="comp-question">Avez-vous utilisé un RTOS (FreeRTOS, VxWorks, QNX, RTEMS, ThreadX...) ?</div>
         <div class="rating-row">
           <input class="rating-option" type="radio" name="rtos" id="rtos_N" value="N"><label for="rtos_N">N</label>
           <input class="rating-option" type="radio" name="rtos" id="rtos_Np" value="N+"><label for="rtos_Np">N+</label>
@@ -465,12 +465,12 @@
           <input class="rating-option" type="radio" name="rtos" id="rtos_Mp" value="M+"><label for="rtos_Mp">M+</label>
           <input class="rating-option" type="radio" name="rtos" id="rtos_E" value="E"><label for="rtos_E">E</label>
         </div>
-        <div class="comp-comment"><textarea name="rtos_comment" placeholder="OS utilisÃ©, matÃ©riel cible, application critique..."></textarea></div>
+        <div class="comp-comment"><textarea name="rtos_comment" placeholder="OS utilisé, matériel cible, application critique..."></textarea></div>
       </div>
 
       <div class="competency">
         <div class="comp-name">Unix / Linux</div>
-        <div class="comp-question">Avez-vous travaillÃ© sous Unix/Linux (dÃ©veloppement, administration, embarquÃ©) ?</div>
+        <div class="comp-question">Avez-vous travaillé sous Unix/Linux (développement, administration, embarqué) ?</div>
         <div class="rating-row">
           <input class="rating-option" type="radio" name="linux" id="linux_N" value="N"><label for="linux_N">N</label>
           <input class="rating-option" type="radio" name="linux" id="linux_Np" value="N+"><label for="linux_Np">N+</label>
@@ -478,7 +478,7 @@
           <input class="rating-option" type="radio" name="linux" id="linux_Mp" value="M+"><label for="linux_Mp">M+</label>
           <input class="rating-option" type="radio" name="linux" id="linux_E" value="E"><label for="linux_E">E</label>
         </div>
-        <div class="comp-comment"><textarea name="linux_comment" placeholder="Distributions, contexte (dÃ©veloppement, administration, embarquÃ©)..."></textarea></div>
+        <div class="comp-comment"><textarea name="linux_comment" placeholder="Distributions, contexte (développement, administration, embarqué)..."></textarea></div>
       </div>
 
       <div class="competency">
@@ -491,12 +491,12 @@
           <input class="rating-option" type="radio" name="exigences" id="exigences_Mp" value="M+"><label for="exigences_Mp">M+</label>
           <input class="rating-option" type="radio" name="exigences" id="exigences_E" value="E"><label for="exigences_E">E</label>
         </div>
-        <div class="comp-comment"><textarea name="exigences_comment" placeholder="Outils, normes appliquÃ©es, contexte projet..."></textarea></div>
+        <div class="comp-comment"><textarea name="exigences_comment" placeholder="Outils, normes appliquées, contexte projet..."></textarea></div>
       </div>
 
       <div class="competency">
         <div class="comp-name">Informatique industrielle</div>
-        <div class="comp-question">Avez-vous travaillÃ© sur des systÃ¨mes industriels (automates, SCADA, bus terrain CAN/Profibus/Ethernet industriel) ?</div>
+        <div class="comp-question">Avez-vous travaillé sur des systèmes industriels (automates, SCADA, bus terrain CAN/Profibus/Ethernet industriel) ?</div>
         <div class="rating-row">
           <input class="rating-option" type="radio" name="info_ind" id="info_ind_N" value="N"><label for="info_ind_N">N</label>
           <input class="rating-option" type="radio" name="info_ind" id="info_ind_Np" value="N+"><label for="info_ind_Np">N+</label>
@@ -504,12 +504,12 @@
           <input class="rating-option" type="radio" name="info_ind" id="info_ind_Mp" value="M+"><label for="info_ind_Mp">M+</label>
           <input class="rating-option" type="radio" name="info_ind" id="info_ind_E" value="E"><label for="info_ind_E">E</label>
         </div>
-        <div class="comp-comment"><textarea name="info_ind_comment" placeholder="SystÃ¨mes utilisÃ©s et contexte..."></textarea></div>
+        <div class="comp-comment"><textarea name="info_ind_comment" placeholder="Systèmes utilisés et contexte..."></textarea></div>
       </div>
 
       <div class="competency">
-        <div class="comp-name">Temps rÃ©el / EmbarquÃ© (systÃ¨me)</div>
-        <div class="comp-question">Avez-vous dÃ©veloppÃ© ou intÃ©grÃ© des systÃ¨mes temps rÃ©el ou embarquÃ©s complets ?</div>
+        <div class="comp-name">Temps réel / Embarqué (système)</div>
+        <div class="comp-question">Avez-vous développé ou intégré des systèmes temps réel ou embarqués complets ?</div>
         <div class="rating-row">
           <input class="rating-option" type="radio" name="temps_reel" id="temps_reel_N" value="N"><label for="temps_reel_N">N</label>
           <input class="rating-option" type="radio" name="temps_reel" id="temps_reel_Np" value="N+"><label for="temps_reel_Np">N+</label>
@@ -517,7 +517,7 @@
           <input class="rating-option" type="radio" name="temps_reel" id="temps_reel_Mp" value="M+"><label for="temps_reel_Mp">M+</label>
           <input class="rating-option" type="radio" name="temps_reel" id="temps_reel_E" value="E"><label for="temps_reel_E">E</label>
         </div>
-        <div class="comp-comment"><textarea name="temps_reel_comment" placeholder="OS, cibles matÃ©rielles, langages, contraintes temps rÃ©el..."></textarea></div>
+        <div class="comp-comment"><textarea name="temps_reel_comment" placeholder="OS, cibles matérielles, langages, contraintes temps réel..."></textarea></div>
       </div>
 
     </div>
@@ -526,13 +526,13 @@
   <!-- SECTION 5 : SECTEURS -->
   <div class="section">
     <div class="section-header">
-      <h2>Secteurs d'expÃ©rience</h2>
+      <h2>Secteurs d'expérience</h2>
       <span>Cochez vos niveaux par secteur</span>
     </div>
     <div class="section-body">
       <div class="competency">
-        <div class="comp-name">AÃ©ronautique / Spatial</div>
-        <div class="comp-question">Avez-vous travaillÃ© dans le secteur aÃ©ronautique ou spatial (DO-178, DO-254, ARP4754...) ?</div>
+        <div class="comp-name">Aéronautique / Spatial</div>
+        <div class="comp-question">Avez-vous travaillé dans le secteur aéronautique ou spatial (DO-178, DO-254, ARP4754...) ?</div>
         <div class="rating-row">
           <input class="rating-option" type="radio" name="sect_aero" id="sect_aero_N" value="N"><label for="sect_aero_N">N</label>
           <input class="rating-option" type="radio" name="sect_aero" id="sect_aero_Np" value="N+"><label for="sect_aero_Np">N+</label>
@@ -542,8 +542,8 @@
         </div>
       </div>
       <div class="competency">
-        <div class="comp-name">DÃ©fense / Militaire</div>
-        <div class="comp-question">Avez-vous travaillÃ© sur des projets dÃ©fense (normes MIL, habilitation, sÃ©curitÃ©...) ?</div>
+        <div class="comp-name">Défense / Militaire</div>
+        <div class="comp-question">Avez-vous travaillé sur des projets défense (normes MIL, habilitation, sécurité...) ?</div>
         <div class="rating-row">
           <input class="rating-option" type="radio" name="sect_defense" id="sect_defense_N" value="N"><label for="sect_defense_N">N</label>
           <input class="rating-option" type="radio" name="sect_defense" id="sect_defense_Np" value="N+"><label for="sect_defense_Np">N+</label>
@@ -554,7 +554,7 @@
       </div>
       <div class="competency">
         <div class="comp-name">Automobile</div>
-        <div class="comp-question">Avez-vous travaillÃ© dans l'industrie automobile (AUTOSAR, CAN, ISO 26262...) ?</div>
+        <div class="comp-question">Avez-vous travaillé dans l'industrie automobile (AUTOSAR, CAN, ISO 26262...) ?</div>
         <div class="rating-row">
           <input class="rating-option" type="radio" name="sect_auto" id="sect_auto_N" value="N"><label for="sect_auto_N">N</label>
           <input class="rating-option" type="radio" name="sect_auto" id="sect_auto_Np" value="N+"><label for="sect_auto_Np">N+</label>
@@ -565,7 +565,7 @@
       </div>
       <div class="competency">
         <div class="comp-name">Industriel</div>
-        <div class="comp-question">Avez-vous de l'expÃ©rience en milieu industriel (machines, process, automatismes...) ?</div>
+        <div class="comp-question">Avez-vous de l'expérience en milieu industriel (machines, process, automatismes...) ?</div>
         <div class="rating-row">
           <input class="rating-option" type="radio" name="sect_indus" id="sect_indus_N" value="N"><label for="sect_indus_N">N</label>
           <input class="rating-option" type="radio" name="sect_indus" id="sect_indus_Np" value="N+"><label for="sect_indus_Np">N+</label>
@@ -579,24 +579,24 @@
 
   <!-- SUBMIT -->
   <div class="submit-area">
-    <button type="submit" class="btn-submit">Envoyer mon auto-Ã©valuation</button>
-    <p class="submit-note">Vos rÃ©ponses sont transmises en toute confidentialitÃ© Ã  l'Ã©quipe de recrutement.</p>
+    <button type="submit" class="btn-submit">Envoyer mon auto-évaluation</button>
+    <p class="submit-note">Vos réponses sont transmises en toute confidentialité à l'équipe de recrutement.</p>
   </div>
 
 </form>
 
 <!-- CONFIRMATION -->
 <div id="confirmation">
-  <div class="icon">â</div>
-  <h2>Merci pour votre rÃ©ponse !</h2>
-  <p>Votre auto-Ã©valuation a bien Ã©tÃ© enregistrÃ©e. Notre Ã©quipe analysera votre profil et vous contactera prochainement pour les missions correspondant Ã  vos compÃ©tences.</p>
+  <div class="icon">✅</div>
+  <h2>Merci pour votre réponse !</h2>
+  <p>Votre auto-évaluation a bien été enregistrée. Notre équipe analysera votre profil et vous contactera prochainement pour les missions correspondant à vos compétences.</p>
 </div>
 
 <script>
-  // âââ CONFIG âââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââ
-  // Remplacer par l'URL du webhook Make quand il sera prÃªt
+  // ─── CONFIG ───────────────────────────────────────────────────────────────
+  // Remplacer par l'URL du webhook Make quand il sera prêt
   const WEBHOOK_URL = "VOTRE_URL_MAKE_WEBHOOK_ICI";
-  // ââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââ
+  // ──────────────────────────────────────────────────────────────────────────
 
   document.getElementById('mainForm').addEventListener('submit', async function(e) {
     e.preventDefault();
@@ -609,8 +609,8 @@
     data.date_soumission = new Date().toLocaleDateString('fr-FR');
 
     if (WEBHOOK_URL === "VOTRE_URL_MAKE_WEBHOOK_ICI") {
-      // Mode dÃ©mo : afficher les donnÃ©es dans la console
-      console.log("DonnÃ©es Ã  envoyer :", JSON.stringify(data, null, 2));
+      // Mode démo : afficher les données dans la console
+      console.log("Données à envoyer :", JSON.stringify(data, null, 2));
       document.getElementById('mainForm').style.display = 'none';
       document.getElementById('confirmation').style.display = 'block';
       window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -627,7 +627,7 @@
       document.getElementById('confirmation').style.display = 'block';
       window.scrollTo({ top: 0, behavior: 'smooth' });
     } catch (err) {
-      alert("Erreur lors de l'envoi. Veuillez rÃ©essayer ou contacter le recruteur.");
+      alert("Erreur lors de l'envoi. Veuillez réessayer ou contacter le recruteur.");
     }
   });
 </script>
